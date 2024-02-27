@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import CreateView from '../views/members/CreateView.vue'
-// import EditView from '../views/students/EditView.vue' 
+import EditView from '../views/members/EditView.vue' 
 import ShowView from '../views/members/ShowView.vue'
 
   const routes =  [
@@ -14,11 +14,11 @@ import ShowView from '../views/members/ShowView.vue'
       name: 'create',
       component: CreateView
     },
-    // {
-    //   path: '/edit/:id',
-    //   name: 'edit',
-    //   component: EditView 
-    // },
+    {
+      path: '/edit/:id',
+      name: 'edit',
+      component: EditView 
+    },
   ]
   const router = createRouter({
     history: createWebHistory(),

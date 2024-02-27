@@ -26,6 +26,9 @@ import { RouterLink, RouterView } from 'vue-router'
                 <router-link class="nav-link" to="/create">Creat</router-link>
               </li>
 
+              <li class="nav-item">
+                <router-link class="nav-link" to="/edit/:id">Edit</router-link>
+              </li>
 
             </ul>
 
@@ -36,7 +39,7 @@ import { RouterLink, RouterView } from 'vue-router'
   </header>
 
   <RouterView />
-
+  
 </template>
 
 

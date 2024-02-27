@@ -2,7 +2,7 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-               <h4>Add Student</h4> 
+               <h4>Add New Member</h4> 
             </div>
             <div class="card-member_number">
                 <div class="mb-3">
@@ -23,8 +23,11 @@
                             <label for="member_number">Membership Number:</label>
                             <input id="member_number" class="form-control" v-model="formData.member_number">
                         </div>
+                        <div>
+                            <label for="amount">Amount:</label>
+                            <input id="amount" class="form-control" v-model="formData.amount">
+                        </div>
 
-                
                         <button type="button" @click="submitForm()">Submit</button>
                     </form>
                 </div>
@@ -45,6 +48,7 @@ export default {
                 last_name: '',
                 id_number: '',
                 member_number: '',
+                amount: '',
             },
         };
     },
@@ -52,12 +56,12 @@ export default {
         submitForm() {
             axios.post('http://127.0.0.1:8000/api/member ', this.formData)
             .then(response => {
-                console.log(response.data);
-                
-                // first_name = this.respomse.data.first_name 
-                // last_name = this.formData.last_name 
-                // id_number = this.formData.id_number 
-                // member_number = this.formData.member_number                 
+                // console.log(response.data);
+                first_name = this.f.first_name 
+                last_name = this.formData.last_name 
+                id_number = this.formData.id_number 
+                member_number = this.formData.member_number
+                amount = this.formData.amount                 
             });
             this.$router.push('/');
         }

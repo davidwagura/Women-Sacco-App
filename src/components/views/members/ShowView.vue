@@ -17,6 +17,7 @@
                         <th>Last Name</th>
                         <th>ID Number</th>
                         <th>Membership Number</th>
+                        <th>Amount</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -28,9 +29,13 @@
                         <td>{{ member.last_name }}</td>
                         <td>{{ member.id_number }}</td>
                         <td>{{ member.member_number }}</td>
+                        <th>{{ member.amount }}</th>
                         <td>
                           <router-link :to="'/edit/' + member.id">Edit</router-link>
                         </td>
+                        <td>
+                        <button @click.prevent="deleteItem(member.id)">Delete</button>
+                      </td>
                     </tr>
                 </tbody>
             </table>
@@ -63,7 +68,17 @@
     
                 });
             },
-    
+            deleteItem(id) {
+                axios.delete(`http://127.0.0.1:8000/api/member/${id}`)
+                .then( response => {
+                    console.log(response);
+
+                    this.listMembers();
+                })
+          
+            }
+
+
         },
           
     }
