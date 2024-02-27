@@ -36,35 +36,32 @@
 <script>
 import axios from 'axios';
 export default {
-  name: 'CreatView',
-  
-  data() {
-    return {
-      formData: {
-        first_name: '',
-        last_name: '',
-        id_number: '',
-        member_number: '',
-        },
-    };
-  },
-  methods: {
-    submitForm() {
-      axios.post('http://127.0.0.1:8000/api/student ', this.formData)
-      .then(response => {
-        console.log(response.data);
-        
-        first_name = this.formData.first_name 
-        last_name = this.formData.last_name 
-        id_number = this.formData.id_number 
-        member_number = this.formData.member_number 
-
-        
-        return response
-      });
-      this.$router.push('/');
+    name: 'CreatView',
+    
+    data() {
+        return {
+            formData: {
+                first_name: '',
+                last_name: '',
+                id_number: '',
+                member_number: '',
+            },
+        };
+    },
+    methods: {
+        submitForm() {
+            axios.post('http://127.0.0.1:8000/api/member ', this.formData)
+            .then(response => {
+                console.log(response.data);
+                
+                // first_name = this.respomse.data.first_name 
+                // last_name = this.formData.last_name 
+                // id_number = this.formData.id_number 
+                // member_number = this.formData.member_number                 
+            });
+            this.$router.push('/');
+        }
     }
-  }
 
 }  
 </script>

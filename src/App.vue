@@ -1,6 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
@@ -20,16 +19,13 @@ import HelloWorld from './components/HelloWorld.vue'
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
               <li class="nav-item">
-                <router-link class="nav-link active"  to="/">Students</router-link>
+                <router-link class="nav-link active"  to="/">members</router-link>
               </li>
 
               <li class="nav-item">
                 <router-link class="nav-link" to="/create">Creat</router-link>
               </li>
 
-              <li class="nav-item">
-                <router-link class="nav-link" to="/edit/:id">Edit</router-link>
-              </li>
 
             </ul>
 
@@ -40,7 +36,9 @@ import HelloWorld from './components/HelloWorld.vue'
   </header>
 
   <RouterView />
+
 </template>
+
 
 <style scoped>
 </style>

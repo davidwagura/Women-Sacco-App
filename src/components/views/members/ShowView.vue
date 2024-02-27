@@ -31,55 +31,40 @@
                         <td>
                           <router-link :to="'/edit/' + member.id">Edit</router-link>
                         </td>
-                        <td>
-                          <button @click.prevent="deleteItem(member.id)">Delete</button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-  </template>
+</template>
   
-  <script>
-  import axios from 'axios';
+<script>
+    import axios from 'axios';
   
-  export default {
-    name: 'membersView',
+    export default {
+        name: 'membersView',
   
-    data() {
-      return {
-        members: []
-    };
-    },
-  
-    created() {
-      this.listmembers()
-    },
-  
-      methods: {
-        listmembers() {
-          axios.get('http://127.0.0.1:8000/api/member')
-          .then(response => {
-            // console.log(response.data)
-            this.members = response.data;
-            console.log(this.members);
-  
-          });
+        data() {
+            return {
+                members: []
+            };
         },
-        deleteItem(id) {
-          axios.delete(`http://127.0.0.1:8000/api/member/${id}`)
-  
-          .then( response => {
-            console.log(response);
-  
-            this.listmembers();
-          })
-            
-        }
-  
-     },
+    
+        created() {
+            this.listmembers()
+        },
+    
+        methods: {
+            listmembers() {
+                axios.get('http://127.0.0.1:8000/api/member')
+                .then(response => {
+                    this.members = response.data;
+                    console.log(this.members);
+    
+                });
+            },
+    
+        },
           
-  }
-  
-  </script>
+    }
+</script>
