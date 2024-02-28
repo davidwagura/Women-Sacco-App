@@ -2,9 +2,12 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-               <h4>Edit member</h4> 
+               <h4>Edit members</h4> 
             </div>
-            <div class="card">
+            <div class="card-body">
+                <div v-if="successMessage" class="alert alert-success" role="alert">
+                    {{ successMessage }}
+                </div>
                 <div class="mb-3">
                     <form>
                         <div>
@@ -52,6 +55,7 @@
                 member_number: '',
                 amount: ''
             },
+            successMessage: ''
         };
     },
     created() {
@@ -68,23 +72,23 @@
             });
         },
         methods: {
-            updateForm() {
-                const id = this.$route.params.id;
-                axios.put(`http://127.0.0.1:8000/api/member/${id}`, this.formData)
-                .then(response => {
-                    
-                    this.formData.first_name = response.data.first_name;
-                    this.formData.last_name = response.data.last_name;
-                    this.formData.id_number = response.data.id_number;
-                    this.formData.member_number = response.data.member_number;
-                    this.formData.amount = response.data.amount;
-                    console.log(response.data)
-                });
-                this.$router.push('/');
-            }
-        
-        },
-    };
+        updateForm() {
+            const id = this.$route.params.id;
+            axios.put(`http://127.0.0.1:8000/api/member/${id}`, this.formData)
+            .then(response => {
+                console.log(response);
+                this.successMessage = 'Member updated successfully.';
+                setTimeout(() => {
+                    this.successMessage = '';
+                    this.$router.push('/');
+                }, 3000);
+            })
+            .catch(error => {
+                console.error('Error updating member:', error);
+                this.successMessage = 'Failed to update member.';
+            });
+        }
+    }    };
   
 </script>
   

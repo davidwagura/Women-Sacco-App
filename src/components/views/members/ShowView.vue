@@ -9,6 +9,10 @@
             </h4>
         </div>
         <div class="card-body">
+             <!-- Success message -->
+            <div v-if="successMessage" class="alert alert-success" role="alert">
+                {{ successMessage }}
+            </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -51,7 +55,8 @@
   
         data() {
             return {
-                members: []
+                members: [],
+                successMessage: ''
             };
         },
     
@@ -64,22 +69,21 @@
                 axios.get('http://127.0.0.1:8000/api/member')
                 .then(response => {
                     this.members = response.data;
-                    console.log(this.members);
     
                 });
             },
             deleteItem(id) {
                 axios.delete(`http://127.0.0.1:8000/api/member/${id}`)
-                .then( response => {
+                .then(response => {
                     console.log(response);
-
-                    this.listMembers();
+                    this.successMessage = 'Member deleted successfully.';
+                    this.listmembers();
                 })
-          
+                .catch(error => {
+                    console.error('Error deleting member:', error);
+                    this.successMessage = 'Failed to delete member.';
+                });
             }
-
-
-        },
-          
+        }          
     }
 </script>

@@ -4,7 +4,11 @@
             <div class="card-header">
                <h4>Add New Member</h4> 
             </div>
-            <div class="card-member_number">
+                <div class="card-body">
+                    <div v-if="successMessage" class="alert alert-success" role="alert">
+                    {{ successMessage }}
+                </div>
+
                 <div class="mb-3">
                     <form>
                         <div>
@@ -50,24 +54,32 @@ export default {
                 member_number: '',
                 amount: '',
             },
+            successMessage: ''
         };
     },
+    
     methods: {
         submitForm() {
             axios.post('http://127.0.0.1:8000/api/member ', this.formData)
             .then(response => {
-                // console.log(response.data);
-                first_name = this.f.first_name 
-                last_name = this.formData.last_name 
-                id_number = this.formData.id_number 
-                member_number = this.formData.member_number
-                amount = this.formData.amount                 
-            });
-            this.$router.push('/');
+                console.log(response);
+                this.successMessage = 'Member added successfully.';
+                setTimeout(() => {
+                this.successMessage = '';
+                this.$router.push('/');
+                }, 3000);                    
+            })
+            .catch(error => {
+                console.error('Error adding member:', error);
+                this.successMessage = 'Failed to add member.';
+            });  
+            // this.$router.push('/');
+      
         }
     }
+}
 
-}  
+
 </script>
 
     
